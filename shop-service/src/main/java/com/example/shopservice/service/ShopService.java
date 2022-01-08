@@ -36,6 +36,8 @@ public class ShopService {
                         .name(dto.getName())
                         .category(dto.getCategory())
                         .price(dto.getPrice())
+                        .description(dto.getDescription())
+                        .date(dto.getDate())
                         .build());
                 return "Goods saved succesfully!";
             } catch (Exception e) {
@@ -57,6 +59,8 @@ public class ShopService {
                             .name(entity.getName())
                             .category(entity.getCategory())
                             .price(entity.getPrice())
+                            .description(entity.getDescription())
+                            .date(entity.getDate())
                             .build();
                 })
                 .collect(Collectors.toList());

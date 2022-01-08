@@ -40,10 +40,13 @@ public class SignUpService {
         String currentUserEmail = currentUser.get("email").asText();
         String teacherEmail = dto.getTeacherEmail();
 
-        List<UserDto> userList = Arrays.asList(Objects.requireNonNull(restTemplate.getForObject("http://localhost:8085/users/list", UserDto[].class)));
-        Optional<Long> currentUserId = userList.stream().filter(user -> currentUserEmail.equals(user.getEmail()))
+        List<UserDto> userList = Arrays.asList(Objects.requireNonNull(restTemplate
+                .getForObject("http://localhost:8085/users/list", UserDto[].class)));
+        Optional<Long> currentUserId = userList.stream()
+                .filter(user -> currentUserEmail.equals(user.getEmail()))
                 .map(UserDto::getId).findFirst();
-        Optional<Long> teacherId = userList.stream().filter(user -> Role.TEACHER.equals(user.getRole()) && teacherEmail.equals(user.getEmail()))
+        Optional<Long> teacherId = userList.stream()
+                .filter(user -> Role.TEACHER.equals(user.getRole()) && teacherEmail.equals(user.getEmail()))
                 .map(UserDto::getId).findFirst();
         if (teacherId.isPresent() && currentUserId.isPresent()) {
             signUpRepository.save(

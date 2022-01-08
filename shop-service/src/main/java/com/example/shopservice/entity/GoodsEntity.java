@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Data
@@ -27,4 +29,9 @@ public class GoodsEntity {
     @Column(name = "category")
     String category;
 
+    @Column(name = "description")
+    String description;
+
+    @Column(name = "date")
+    LocalDate date;
 }
